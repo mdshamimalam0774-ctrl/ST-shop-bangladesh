@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST Shop Bangladesh - Affiliate Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; text-align: center; }
+        
+        /* টপ হেডার ও লোগো বার */
+        .top-bar { background: #333; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 45px; border-radius: 50%; }
+        .brand-name { font-size: 20px; font-weight: bold; color: #ff5722; }
+        .login-btn { background: #ff5722; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; text-decoration: none; font-weight: bold; }
+        .login-btn:hover { background: #e64a19; }
+
+        /* ব্যানার স্লাইডার স্টাইল */
+        .slider-container { position: relative; max-width: 1000px; height: 400px; margin: 20px auto; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #ddd; }
+        .slide { display: none; width: 100%; height: 100%; background-size: cover; background-position: center; }
+        .slide.active { display: block; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; padding: 10px 15px; border: none; cursor: pointer; font-size: 18px; border-radius: 50%; }
+        .slider-btn:hover { background: rgba(0,0,0,0.9); }
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* প্রোডাক্ট সেクション স্টাইল */
+        .products-section { padding: 30px 20px; }
+        .product-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .product-card { background: white; width: 250px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        .product-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; }
+        .product-title { font-size: 16px; font-weight: bold; margin: 10px 0; color: #333; }
+        .product-price { color: #ff5722; font-size: 15px; font-weight: bold; margin-bottom: 10px; }
+        .buy-btn { background: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; font-size: 14px; }
+        .buy-btn:hover { background: #218838; }
+
+        /* ফুটার */
+        footer { background: #333; color: white; padding: 15px; margin-top: 30px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <!-- টপ হেডার -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="image_4.png.jpg" alt="ST Shop Bangladesh Logo" class="logo-img">
+            <span class="brand-name">ST Shop Bangladesh</span>
+        </div>
+        <a href="#login" class="login-btn">লগইন / সাইন আপ</a>
+    </div>
+
+    <!-- ব্যানার স্লাইডার -->
+    <div class="slider-container">
+        <div class="slide active" style="background-image: url('banner1.jpg.png');"></div>
+        <div class="slide" style="background-image: url('banner2.jpg.jpg');"></div>
+        <div class="slide" style="background-image: url('banner3.jpg.jpg');"></div>
+        <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- মূল কনটেন্ট -->
+    <div class="products-section">
+        <h1>স্বাগতম ST Shop Bangladesh-তে!</h1>
+        <p>আপনার বিশ্বস্ত অনলাইন শপিং গাইড এবং সেরা অ্যাফিলিয়েট প্রোডাক্ট কালেকশন।</p>
+
+        <div class="product-grid">
+            <!-- প্রোডাক্ট ১ -->
+            <div class="product-card">
+                <img src="banner1.jpg.png" alt="Product">
+                <div class="product-title">স্মার্ট ট্রেন্ডি প্রোডাক্ট ১</div>
+                <div class="product-price">৳ ১,৫০০ টাকা</div>
+                <a href="#" class="buy-btn">অর্ডার করুন</a>
+            </div>
+
+            <!-- প্রোডাক্ট ২ -->
+            <div class="product-card">
+                <img src="banner2.jpg.jpg" alt="Product">
+                <div class="product-title">এক্সক্লুসিভ কালেকশন ২</div>
+                <div class="product-price">৳ ২,৩০০ টাকা</div>
+                <a href="#" class="buy-btn">অর্ডার করুন</a>
+            </div>
+
+            <!-- প্রোডাক্ট ৩ -->
+            <div class="product-card">
+                <img src="banner3.jpg.jpg" alt="Product">
+                <div class="product-title">প্রিমিয়াম গ্যাজেট ৩</div>
+                <div class="product-price">৳ ৩,৫০০ টাকা</div>
+                <a href="#" class="buy-btn">অর্ডার করুন</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ফুটার -->
+    <footer>
+        <p>&copy; ২০২৬ ST Shop Bangladesh. সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <!-- স্লাইডার স্ক্রিপ্ট -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function moveSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // প্রতি ৩ সেকেন্ড পর পর অটো স্লাইড হবে
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+    </script>
+
+</body>
+</html>
